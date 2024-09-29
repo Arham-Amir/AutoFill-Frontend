@@ -25,9 +25,19 @@ const VehicleFormProcessor: React.FC = () => {
     formData.append('filename', selectedFile.name);
 
     try {
+      // Retrieve the token from local storage
+      const token = localStorage.getItem('userToken');
+
+      if (!token) {
+        throw new Error('No authentication token found');
+      }
+
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/process_vehicle_form/`, {
         method: 'POST',
         body: formData,
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
       });
 
       if (response.ok) {
