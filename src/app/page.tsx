@@ -28,9 +28,9 @@ export default function Home() {
   return (
     <main className="flex flex-col">
       <div className="container mx-auto px-4 flex-grow">
-        <h1 className="text-4xl tracking-wider font-funky text-center my-8">
+        {/* <h1 className="text-4xl tracking-wider font-funky text-center my-8">
         Brand forms in secondss
-        </h1>
+        </h1> */}
         
         <div className="my-8">
           <VehicleFormProcessor />
