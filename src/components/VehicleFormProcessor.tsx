@@ -25,7 +25,7 @@ const VehicleFormProcessor: React.FC = () => {
     formData.append('filename', selectedFile.name);
 
     try {
-      const response = await fetch('http://localhost:8000/process_vehicle_form/', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/process_vehicle_form/`, {
         method: 'POST',
         body: formData,
       });
