@@ -45,7 +45,8 @@ const VehicleFormProcessor: React.FC = () => {
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = `${selectedFile.name.split('.')[0]}-output.pdf`;
+        const outputFilename = process.env.NEXT_PUBLIC_OUTPUT_FILENAME || 'processed_form';
+        a.download = `${outputFilename}.pdf`;
         document.body.appendChild(a);
         a.click();
         window.URL.revokeObjectURL(url);

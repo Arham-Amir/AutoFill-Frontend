@@ -1,29 +1,33 @@
 'use client'
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { login } from '@/lib/authClient';
 import { toast } from 'sonner';
+import Auth from '@/components/auth';
+import { Button } from '@/components/ui/button';
 
 const LoginPage = () => {
   const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
+  const isAuthenticated = Auth();
 
-  useEffect(() => {
-    const checkUserToken = () => {
-      const userToken = localStorage.getItem('userToken');
-      if (userToken) {
-        router.push('/');
-      } else {
-        setIsLoading(false);
-      }
-    };
+  // If authentication is still being checked, show loader
+  if (isAuthenticated === null) {
+    return (
+      <div className="my-8 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-indigo-500"></div>
+      </div>
+    );
+  }
 
-    checkUserToken();
-  }, [router]);
+  // If user is already authenticated, redirect to home page
+  if (isAuthenticated) {
+    router.push('/');
+    return null;
+  }
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -37,14 +41,6 @@ const LoginPage = () => {
       setError(result.error);
     }
   };
-
-  if (isLoading) {
-    return (
-      <div className="my-8 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-indigo-500"></div>
-      </div>
-    );
-  }
 
   return (
     <div className="my-8 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -86,12 +82,13 @@ const LoginPage = () => {
           </div>
 
           <div>
-            <button
+            <Button
+            size={'lg'}
               type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="group relative w-full flex justify-center"
             >
               Sign in
-            </button>
+            </Button>
           </div>
         </form>
       </div>
