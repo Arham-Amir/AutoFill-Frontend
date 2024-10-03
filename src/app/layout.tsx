@@ -32,7 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full">
       <body
-        className={`${geistSans.variable} ${kaushan.variable} antialiased font-sans flex flex-col min-h-screen`}
+        className={`${geistSans.variable} ${kaushan.variable} antialiased font-sans flex flex-col min-h-screen bg-backgrou`}
       >
         <Toaster />
         <ThemeProvider
