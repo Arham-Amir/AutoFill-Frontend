@@ -1,10 +1,10 @@
 'use client'
 
 import React, { useState } from 'react';
-import FileUpload from './FileUpload';
+import DragDropFileUpload from './DragDropFileUpload'; // New import
 import FormTypeSelector from './FormTypeSelector';
 import { Button } from './ui/button';
-import { FileText, List, Upload } from 'lucide-react'; // Import icons
+import { List, Upload, ArrowBigRightDashIcon } from 'lucide-react'; // Added ArrowRight import
 
 const VehicleFormProcessor: React.FC = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -78,20 +78,20 @@ const VehicleFormProcessor: React.FC = () => {
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Vehicle Form Processor</h1>
       <div className="bg-accent shadow-lg rounded-lg p-6 mb-8">
-        <div className="flex flex-row items-start justify-center w-full gap-16 py-6">
+        <div className="flex flex-row items-center justify-center w-full gap-4 py-6">
           <div className="flex flex-col items-center w-1/3 max-w-[200px] bg-card rounded-lg p-4 shadow">
-            <List className="w-8 h-8 mb-2 text-blue-500" />
-            <span className="text-sm font-medium mb-4">Step 1: Select Form Type</span>
             <FormTypeSelector selectedType={selectedType} onTypeSelect={handleTypeSelect} />
           </div>
-          <div className="flex flex-col items-center w-1/3 max-w-[200px] bg-card rounded-lg p-4 shadow">
-            <FileText className="w-8 h-8 mb-2 text-green-500" />
-            <span className="text-sm font-medium mb-4">Step 2: Upload File</span>
-            <FileUpload onFileSelect={handleFileChange} />
+          
+          <ArrowBigRightDashIcon className="w-8 h-8 text-gray-400" />
+          
+          <div className="flex flex-col items-center w-1/3 max-w-[300px] bg-card rounded-lg p-4 shadow">
+            <DragDropFileUpload onFileSelect={handleFileChange} />
           </div>
+          
+          <ArrowBigRightDashIcon className="w-8 h-8 text-gray-400" />
+          
           <div className="flex flex-col items-center w-1/3 max-w-[200px] bg-card rounded-lg p-4 shadow">
-            <Upload className="w-8 h-8 mb-2 text-purple-500" />
-            <span className="text-sm font-medium mb-4">Step 3: Process Form</span>
             <Button
               onClick={handleSubmit}
               disabled={!selectedFile || !selectedType || isLoading}
