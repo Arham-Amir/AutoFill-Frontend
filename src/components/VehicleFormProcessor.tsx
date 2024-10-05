@@ -76,7 +76,7 @@ const VehicleFormProcessor: React.FC = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">VFP</h1>
+      <h1 className="font-bold mb-4  font-funky text-7xl">VFP</h1>
       {/* Apply glassmorphic effect to the background */}
       <div className="bg-white/30 backdrop-blur-md shadow-lg rounded-lg p-6 mb-8 border border-white/50">
         <div className="flex flex-row items-center justify-center w-full gap-4 py-6">

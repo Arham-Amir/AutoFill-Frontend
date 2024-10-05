@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { ThemeProvider } from '@/components/theme-provider';
 import "./globals.css";
-import { Sriracha } from "next/font/google";
+import { Zen_Dots } from "next/font/google";
 import { Toaster } from 'sonner'
 import Navbar from "@/components/Navbar";
 
 
-const kaushan = Sriracha({
+const kaushan = Zen_Dots({
   subsets: ["latin"],
   variable: "--font-kaushan",
   weight: "400",
